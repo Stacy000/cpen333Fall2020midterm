@@ -18,9 +18,11 @@ namespace MTQ1
 
 
             List<Thread> threads = new List<Thread>();
-            Task[] tasks = new Task[5];
+            List<Task> tasks1 = new List<Task>();
 
-            /*  for (int i = 0; i < numberOfThreads; i++)
+            
+
+            /* for (int i = 0; i < numberOfThreads; i++)
               {
                   Thread t = new Thread(() => thread_increment(ref counter));
 
@@ -28,20 +30,41 @@ namespace MTQ1
                   threads.Add(t);
 
               }
-            */
-            for (int i = 0; i < numberOfThreads; i++)
-            {
-                tasks[i] = Task.Run(() => thread_increment(ref counter));
-            }
-
-            Task.WaitAll(tasks);
-
-            /* foreach (Thread thread in threads)
+            
+             foreach (Thread thread in threads)
              {
                  thread.Join();
              }
             */
+
+             
+            for (int i = 0; i < numberOfThreads; i++)
+            {
+                Task k = new Task(() => thread_increment(ref counter));
+
+                k.Start();
+                tasks1.Add(k);
+
+            }
+
+            foreach (Task task in tasks1)
+            {
+                task.Wait();
+            }
+            
+            //run tasks in one line
+           /* Task[] tasks2 = new Task[5];
+
+            for (int i = 0; i < numberOfThreads; i++)
+            {
+                tasks2[i] = Task.Run(() => thread_increment(ref counter));
+            }
+
+            Task.WaitAll(tasks2);
+            */
             Console.WriteLine("Counter:{0}", counter);
+          
+
 
         }
         //Mutex Method
@@ -60,8 +83,9 @@ namespace MTQ1
 
 
          }
-        */
-        static void thread_increment(ref long counter)
+        
+        //lock method
+        /*static void thread_increment(ref long counter)
 
         {
 
@@ -76,11 +100,25 @@ namespace MTQ1
                 }
             }
 
+        }
+        */
+        static void thread_increment(ref long counter)
+
+        {
 
 
+            Monitor.Enter(Tolock);
+            for (int i = 0; i < 100000; i++)
+            {
+                
+                counter++;
+                
 
+            }
+            Monitor.Exit(Tolock);
 
         }
+
     }
 }
 
