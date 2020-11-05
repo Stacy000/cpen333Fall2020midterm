@@ -10,6 +10,9 @@ namespace MTQ1
         private static Mutex mut = new Mutex();
         private static object Tolock = new object();
         private static int count = 0;
+        private static SemaphoreSlim sem = new SemaphoreSlim(1);
+        private static SemaphoreSlim sem_2 = new SemaphoreSlim(3);
+
 
         static void Main(string[] args)
         {
@@ -122,9 +125,9 @@ namespace MTQ1
 
         }
         */
-        //Interlock Increment method
+        //Interlock Exchange method
 
-        static void thread_increment(ref long counter)
+        /*static void thread_increment(ref long counter)
 
         {
 
@@ -144,24 +147,40 @@ namespace MTQ1
                     i--;
                 }
             }
+        */
 
-            /*
-            static void thread_increment(ref long counter)
+        //SemaphoreSlim alone method
+        /*
+        static void thread_increment(ref long counter)
 
+        {
+            sem.Wait();
+            for (int i = 0; i < 100000; i++)
             {
-                for (int i = 0; i < 100000; i++)
-                {
 
-                    counter++;
+                counter++;
 
-                    Interlocked.Exchange(ref counter,);
-
-                }
 
             }
-    */
-
+            sem.Release();
         }
+        */
+        //Combination of SemaphoreSlim with initial capacity of 3 and Interlocked.Increment() method
+        static void thread_increment(ref long counter)
+
+        {
+            sem.Wait();
+            for (int i = 0; i < 100000; i++)
+            {
+
+                Interlocked.Increment(ref counter);
+
+
+            }
+            sem.Release();
+        }
+
     }
 }
+
 
