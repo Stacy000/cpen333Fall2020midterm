@@ -54,7 +54,7 @@ namespace MTQ2
         // TODO: Write specification for GeneratePrimes
         //===================================================================
         /// <summary>
-        /// To generate a list of primes less than 46341
+        /// generate a list of primes less than a limit number, the limit number should be greater or equal to 2.
         /// </summary>
         /// <param name="n"> the limit number </param>
         /// <returns> a list of primes
@@ -177,7 +177,7 @@ namespace MTQ2
         {
 
             // even number, obviously not prime
-            if ((n % 2) == 0)
+            if ((n % 2) == 0 && n!=2)
             {
                 return false;
             }
@@ -193,18 +193,25 @@ namespace MTQ2
                 int idx = BinarySearch(primes, n);
                 return idx != -1;
             }
-
-            for (int i = 0; i < primes.Length; i++)
+            else
             {
-                if (primes[i] * primes[i] > n)
+
+                for (int i = 0; i < primes.Length; i++)
                 {
-                    return true;
-                }
-                else if ((n % primes[i]) == 0)
-                {
-                    return true;
+                    if ((n % primes[i]) == 0)
+                    {
+                        return false;
+                    }
+
+                    else if (primes[i] * primes[i] > n)
+                    {
+                        return true;
+                    }
+
                 }
             }
+
+            
             return false;
         }
     }

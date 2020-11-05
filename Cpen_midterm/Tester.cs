@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 namespace MTQ2
 {
     public class Tester
@@ -13,17 +14,28 @@ namespace MTQ2
               {
                 Console.WriteLine("****BinarySearch Testing Begins****");
 
-                int[] testArray = new int[] {10,20,30,56,78,40 };
+                int[] testArray = new int[] {10,10,20,30,56,78,80 };
                 TestBinarySearch(testArray, 10, 0);
-                TestBinarySearch(testArray, 20,1);
+                TestBinarySearch(testArray, 20,2);
+                TestBinarySearch(testArray, 80, 6);
 
+
+                
 
                 Console.WriteLine("****Successfully Tested BinarySearch****");
                 Console.WriteLine("****GeneratePrime Testing Begins****");
-                //Your test cases go here
+                List<int> expectedList = new List<int> { 2, 3, 5, 7 };
+                TestGeneratePrimes(8, expectedList);
+
+                
                 Console.WriteLine("****Successfully Tested GeneratePrime****");
                 Console.WriteLine("****IsPrime Testing Begins****");
-                //Your test cases go here
+                TestIsPrime(7,true);
+                TestIsPrime(8, false);
+                TestIsPrime(2, true);
+                TestIsPrime(60493, true);
+                TestIsPrime(100000, false);
+
                 Console.WriteLine("****Successfully Tested IsPrime****");
                 Console.WriteLine("****Done Testing");
 
@@ -49,7 +61,7 @@ namespace MTQ2
 
 
             int result = HelperFunctions.BinarySearch(array, n);
-            Console.WriteLine(result);
+           // Console.WriteLine(result);
             if (result != expected)
             {
                 throw new Exception("test fails");
@@ -69,12 +81,18 @@ namespace MTQ2
          * Unit tests for IsPrime
          * @throws TestException if a unit test fails
          */
-       /* void TestIsPrime(int n, expected) {
+         static void TestIsPrime(int n,bool expected)
+        {
+          
+
+           bool result = HelperFunctions.IsPrime(n);
+            if (result != expected)
+            {
+                throw new Exception("test fails");
+            }
 
 
-          var results = HelperFunctions.IsPrime(n);
-
-
+          //  Console.WriteLine("result="+result);
           //===================================================================
           // TODO: Do something with the results and expectation value
           //===================================================================
@@ -86,16 +104,33 @@ namespace MTQ2
          * Unit Tests for generate_primes
          * @throws TestException if a unit test fails
          */
-     /*   static void TestGeneratePrimes(...) {
+        static void TestGeneratePrimes(int n, List<int> expectedList) {
 
 
-          var results = GeneratePrimes(...);
-          //===================================================================
-          // TODO: Do something with the results and expected value
-          //===================================================================
+          List<int> results = HelperFunctions.GeneratePrimes(n);
+
+            /*foreach(int a in results)
+            {
+                Console.WriteLine(a);
+            }
+            */
+            for (int i = 0;i < results.Count; i++)
+            {
+
+                if (results[i] != expectedList[i])
+                {
+                    throw new Exception("test fails");
+                }
+
+            }
+            
+           
+            //===================================================================
+            // TODO: Do something with the results and expected value
+            //===================================================================
 
 
         }
-     */
+     
     }
 }
