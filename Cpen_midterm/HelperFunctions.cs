@@ -20,35 +20,42 @@ namespace MTQ2
         public static int BinarySearch(int[] data, int val) {
 
             int min = 0;
-            int max = data.Length; // one beyond the top
-
-
-
+            int max = data.Length-1; // one beyond the top
 
             while (min<max) {
-                int mid = (min + max - 1) / 2;
+                int mid = (min + max) / 2;
                 int v = data[mid];
                 // find first occurrence
-                if (v == val && (mid == 0 || data[mid - 1] < val)) {
-                    return (int) mid;
-                } else if (val <= v) {
-                    max = mid;
-                } else
+                if (v == val)
                 {
-                    min = mid + 1;
+                    return (int) mid;
+                }
+
+                else if (val <= v)
+                {
+                    max = mid-1;
+                }
+
+                else
+                {
+                    min = mid+1;
                 }
             }
 
-            if (data[min] != val)
-            {
-                return -2;
-            }
-            return (int)min;
+            
+            return -1;
         }
+        
 
         //===================================================================
         // TODO: Write specification for GeneratePrimes
         //===================================================================
+        /// <summary>
+        /// To generate a list of primes less than 46341
+        /// </summary>
+        /// <param name="n"> the limit number </param>
+        /// <returns> a list of primes
+        /// </returns>
         public static List<int> GeneratePrimes(int n)
         {
 

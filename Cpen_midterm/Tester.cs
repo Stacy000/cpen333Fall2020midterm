@@ -3,7 +3,7 @@ namespace MTQ2
 {
     public class Tester
     {
-          static int Main() {
+       /*   static int Main() {
               //===================================================================
               // TODO: generate data and call the Tester Functions in try/catch
               // format like lab 3
@@ -39,7 +39,7 @@ namespace MTQ2
           * Unit Tests for binary_search
           * @throws TestException if a test fails
           */
-         void TestBinarySearch(...) {
+      /*   void TestBinarySearch(...) {
 
 
            // single element found
@@ -55,7 +55,7 @@ namespace MTQ2
          * Unit tests for IsPrime
          * @throws TestException if a unit test fails
          */
-        void TestIsPrime(...) {
+    /*    void TestIsPrime(...) {
 
 
           var results = IsPrime(...);
@@ -70,7 +70,7 @@ namespace MTQ2
          * Unit Tests for generate_primes
          * @throws TestException if a unit test fails
          */
-        static void TestGeneratePrimes(...) {
+     /*   static void TestGeneratePrimes(...) {
 
 
           var results = GeneratePrimes(...);
@@ -80,6 +80,6 @@ namespace MTQ2
 
 
         }
-
+     */
     }
 }
