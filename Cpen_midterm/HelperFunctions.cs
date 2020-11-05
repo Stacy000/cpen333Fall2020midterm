@@ -17,33 +17,36 @@ namespace MTQ2
         //===================================================================
         // TODO: Fix bugs in BinarySearch
         //===================================================================
-        public static int BinarySearch(int[] data, int val) {
+        public static int BinarySearch(int[] data, int val)
+        {
 
             int min = 0;
-            int max = data.Length-1; // one beyond the top
+            int max = data.Length - 1; // one beyond the top
 
-            while (min<max) {
+            while (min < max)
+            {
                 int mid = (min + max) / 2;
                 int v = data[mid];
                 // find first occurrence
-                if (v == val)
+                if (v == val && (mid == 0 || data[mid - 1] < val))
                 {
-                    return (int) mid;
+                    return (int)mid;
                 }
-
                 else if (val <= v)
                 {
-                    max = mid-1;
+                    max = mid;
                 }
-
                 else
                 {
-                    min = mid+1;
+                    min = mid + 1;
                 }
             }
 
-            
-            return -1;
+            if (data[min] != val)
+            {
+                return -1;
+            }
+            return (int)min;
         }
         
 
