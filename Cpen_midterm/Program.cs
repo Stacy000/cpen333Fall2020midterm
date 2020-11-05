@@ -9,7 +9,7 @@ namespace MTQ1
     {
         private static Mutex mut = new Mutex();
         private static object Tolock = new object();
-
+        private static int count = 0;
 
         static void Main(string[] args)
         {
@@ -20,50 +20,51 @@ namespace MTQ1
             List<Thread> threads = new List<Thread>();
             List<Task> tasks1 = new List<Task>();
 
-            
 
-            /* for (int i = 0; i < numberOfThreads; i++)
+
+            for (int i = 0; i < numberOfThreads; i++)
+            {
+                Thread t = new Thread(() => thread_increment(ref counter));
+
+                t.Start();
+                threads.Add(t);
+
+            }
+
+            foreach (Thread thread in threads)
+            {
+                thread.Join();
+            }
+
+
+
+            /*  for (int i = 0; i < numberOfThreads; i++)
               {
-                  Thread t = new Thread(() => thread_increment(ref counter));
+                  Task k = new Task(() => thread_increment(ref counter));
 
-                  t.Start();
-                  threads.Add(t);
+                  k.Start();
+                  tasks1.Add(k);
 
               }
-            
-             foreach (Thread thread in threads)
-             {
-                 thread.Join();
-             }
-            */
 
-             
-            for (int i = 0; i < numberOfThreads; i++)
-            {
-                Task k = new Task(() => thread_increment(ref counter));
+              foreach (Task task in tasks1)
+              {
+                  task.Wait();
+              }
+              */
 
-                k.Start();
-                tasks1.Add(k);
-
-            }
-
-            foreach (Task task in tasks1)
-            {
-                task.Wait();
-            }
-            
             //run tasks in one line
-           /* Task[] tasks2 = new Task[5];
+            /* Task[] tasks2 = new Task[5];
 
-            for (int i = 0; i < numberOfThreads; i++)
-            {
-                tasks2[i] = Task.Run(() => thread_increment(ref counter));
-            }
+             for (int i = 0; i < numberOfThreads; i++)
+             {
+                 tasks2[i] = Task.Run(() => thread_increment(ref counter));
+             }
 
-            Task.WaitAll(tasks2);
-            */
+             Task.WaitAll(tasks2);
+             */
             Console.WriteLine("Counter:{0}", counter);
-          
+
 
 
         }
@@ -102,6 +103,8 @@ namespace MTQ1
 
         }
         */
+        //monitor method
+        /*
         static void thread_increment(ref long counter)
 
         {
@@ -118,7 +121,47 @@ namespace MTQ1
             Monitor.Exit(Tolock);
 
         }
+        */
+        //Interlock Increment method
 
+        static void thread_increment(ref long counter)
+
+        {
+
+
+
+            for (int i = 0; i < 100000; i++)
+            {
+                if (0 == Interlocked.Exchange(ref count, 1))
+                {
+                    counter++;
+                    Interlocked.Exchange(ref count, 0);
+
+                }
+
+                else
+                {
+                    i--;
+                }
+            }
+
+            /*
+            static void thread_increment(ref long counter)
+
+            {
+                for (int i = 0; i < 100000; i++)
+                {
+
+                    counter++;
+
+                    Interlocked.Exchange(ref counter,);
+
+                }
+
+            }
+    */
+
+        }
     }
 }
 
