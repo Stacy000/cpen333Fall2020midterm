@@ -113,15 +113,15 @@ namespace MTQ1
         {
 
 
-            Monitor.Enter(Tolock);
+            
             for (int i = 0; i < 100000; i++)
             {
-                
+                Monitor.Enter(Tolock);
                 counter++;
-                
+                Monitor.Exit(Tolock);
 
             }
-            Monitor.Exit(Tolock);
+            
 
         }
         */
@@ -154,30 +154,31 @@ namespace MTQ1
         static void thread_increment(ref long counter)
 
         {
-            sem.Wait();
+            
             for (int i = 0; i < 100000; i++)
             {
-
+                sem.Wait();
                 counter++;
-
+                
+                sem.Release();
 
             }
-            sem.Release();
+            
         }
         */
         //Combination of SemaphoreSlim with initial capacity of 3 and Interlocked.Increment() method
         static void thread_increment(ref long counter)
 
         {
-            sem.Wait();
+            
             for (int i = 0; i < 100000; i++)
             {
-
+                sem.Wait();
                 Interlocked.Increment(ref counter);
-
+                sem.Release();
 
             }
-            sem.Release();
+            
         }
 
     }
