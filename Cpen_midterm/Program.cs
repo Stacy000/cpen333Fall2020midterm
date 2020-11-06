@@ -66,7 +66,7 @@ namespace MTQ1
 
              Task.WaitAll(tasks2);
              */
-          //  Console.WriteLine("Counter:{0}", counter);
+            //  Console.WriteLine("Counter:{0}", counter);
 
 
 
@@ -170,7 +170,7 @@ namespace MTQ1
         static void thread_increment(ref long counter)
 
         {
-            
+
             for (int i = 0; i < 100000; i++)
             {
                 sem.Wait();
@@ -178,10 +178,11 @@ namespace MTQ1
                 sem.Release();
 
             }
-            
+
         }
-   
+
     }
+}
 
 
 
