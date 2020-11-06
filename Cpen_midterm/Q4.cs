@@ -24,7 +24,7 @@ namespace MTQ4
             // TO-DO ROLLER-COASTER METHOD IN A THREAD
 
             // TO-DO PASSENGER/THREAD
-
+            Console.WriteLine("roller coaster starts");
             Task.Run(() =>
             {
                 RollerCoaster();
@@ -56,7 +56,7 @@ namespace MTQ4
             s1.Wait();
             passengerOnBoard++;
 
-            if (passengerOnBoard == rollerCoasterCapacity)
+            if (passengerOnBoard == rollerCoasterCapacity || passengersInLine - rollerCoasterCapacity <= 0)
             {
                 Full.Release(); //all passengers are boarded
                 passengerOnBoard = 0;
@@ -69,7 +69,7 @@ namespace MTQ4
 
             s2.Wait();
             remainingSeat++;
-            if (remainingSeat <= rollerCoasterCapacity)
+            if (remainingSeat <= rollerCoasterCapacity || passengersInLine - rollerCoasterCapacity <= 0)
             {
                 Empty.Release(); //all passenger got off
                 remainingSeat = 0;
@@ -91,11 +91,9 @@ namespace MTQ4
             Thread.Sleep(1500);
 
             Full.Wait();
-            Console.WriteLine("All Boarded");
             Thread.Sleep(1500);
 
             Exit.Release(rollerCoasterCapacity);
-            Console.WriteLine("Ride begins");
             Thread.Sleep(1500);
 
             Empty.Wait();
@@ -117,11 +115,9 @@ namespace MTQ4
                 Thread.Sleep(1500);
 
                 Full.Wait();
-                Console.WriteLine("All Boarded");
                 Thread.Sleep(1500);
 
                 Exit.Release(rollerCoasterCapacity);
-                Console.WriteLine("Ride begins");
                 Thread.Sleep(1500);
 
                 Empty.Wait();

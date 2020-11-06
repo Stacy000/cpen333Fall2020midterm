@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace MTQ2
 {
-    public class HelperFunctions
+     public class HelperFunctions
     {
 
 
@@ -214,5 +214,7 @@ namespace MTQ2
             
             return false;
         }
+   
     }
+   
 }
