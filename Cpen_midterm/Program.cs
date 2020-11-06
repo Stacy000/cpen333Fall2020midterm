@@ -14,7 +14,7 @@ namespace MTQ1
         private static SemaphoreSlim sem_2 = new SemaphoreSlim(3);
 
 
-     /*   static void Main(string[] args)
+        static void Main(string[] args)
         {
             long counter = 0;
             int numberOfThreads = 5;
@@ -167,7 +167,7 @@ namespace MTQ1
         }
         */
         //Combination of SemaphoreSlim with initial capacity of 3 and Interlocked.Increment() method
-   /*     static void thread_increment(ref long counter)
+        static void thread_increment(ref long counter)
 
         {
             
@@ -180,7 +180,7 @@ namespace MTQ1
             }
             
         }
-   */
+   
     }
 
 

@@ -4,7 +4,7 @@ namespace MTQ2
 {
     public class Tester
     {
-      /*   static int Main() {
+         static int Main() {
               //===================================================================
               // TODO: generate data and call the Tester Functions in try/catch
               // format like lab 3
@@ -57,7 +57,7 @@ namespace MTQ2
           * Unit Tests for binary_search
           * @throws TestException if a test fails
           */
-     /*    static void TestBinarySearch(int[]array,int n,int expected) {
+         static void TestBinarySearch(int[]array,int n,int expected) {
 
 
             int result = HelperFunctions.BinarySearch(array, n);
@@ -81,7 +81,7 @@ namespace MTQ2
          * Unit tests for IsPrime
          * @throws TestException if a unit test fails
          */
-    /*     static void TestIsPrime(int n,bool expected)
+         static void TestIsPrime(int n,bool expected)
         {
           
 
@@ -104,7 +104,7 @@ namespace MTQ2
          * Unit Tests for generate_primes
          * @throws TestException if a unit test fails
          */
-   /*     static void TestGeneratePrimes(int n, List<int> expectedList) {
+        static void TestGeneratePrimes(int n, List<int> expectedList) {
 
 
           List<int> results = HelperFunctions.GeneratePrimes(n);
@@ -114,7 +114,7 @@ namespace MTQ2
                 Console.WriteLine(a);
             }
             */
-   /*         for (int i = 0;i < results.Count; i++)
+            for (int i = 0;i < results.Count; i++)
             {
 
                 if (results[i] != expectedList[i])
@@ -131,7 +131,7 @@ namespace MTQ2
 
 
         }
-*/
+
      
     }
 }
