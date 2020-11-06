@@ -66,7 +66,7 @@ namespace MTQ1
 
              Task.WaitAll(tasks2);
              */
-            //  Console.WriteLine("Counter:{0}", counter);
+              Console.WriteLine("Counter:{0}", counter);
 
 
 
