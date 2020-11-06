@@ -18,7 +18,7 @@ namespace MTQ4
         public static SemaphoreSlim Exit = new SemaphoreSlim(0, rollerCoasterCapacity); //Passengers will perform a Wait() on Exit before getting off. When the rollercoaster returns after a ride, it will Release() this semaphore to let off the passengers
         public static SemaphoreSlim Empty = new SemaphoreSlim(0, rollerCoasterCapacity); //Passengers will perform a Release() on this semaphore when they have actually got off. The rollercoaster will perform a Wait() on this semaphore to ensure that the passengers have left before letting new passengers on
 
-        //mutexes to protect counters
+        //semaphoreSlims to protect counters
         public static SemaphoreSlim s1 = new SemaphoreSlim(1, passengersInLine); 
         public static SemaphoreSlim s2 = new SemaphoreSlim(1, passengersInLine);
 
