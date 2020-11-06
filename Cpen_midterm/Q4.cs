@@ -58,7 +58,7 @@ namespace MTQ4
 
             s1.Wait();
             passengerOnBoard++;
-            
+            //Console.WriteLine("p="+passengersInLine);
             if (passengerOnBoard == rollerCoasterCapacity || passengersInLine - rollerCoasterCapacity <= 0) //if roaller coaster is full or there's no one waiting in line, the roller coaster starts
             {
                 Full.Release(); //all passengers are boarded
@@ -108,6 +108,7 @@ namespace MTQ4
 
             passengersInLine = passengersInLine - rollerCoasterCapacity; //one ride is finished, the next group of passengers are ready to get on
 
+            //Console.WriteLine("p="+passengersInLine);
             if (passengersInLine <= 0)
             {
                 Environment.Exit(0); //when there is no passenger waiting in line, stop the program
